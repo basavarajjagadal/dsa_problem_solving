@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool squareIsWhite(string coordinates) {
+        int digit=coordinates[0]-96;
+        if((coordinates[1]+digit)%2==0) return false;
+
+        else return true;
+        
+
+        
+        
+    }
+};
