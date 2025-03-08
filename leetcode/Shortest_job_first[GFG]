@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    long long solve(vector<int>& bt) {
+        int n=bt.size();
+        sort(bt.begin(),bt.end());
+        int time=0;
+        long long waittime=0;
+        for(int i=0;i<n;i+){
+            waittime=waittime+time;
+            time=time+bt[i];
+        }
+        return waittime/n;
+        
+    }
+};
