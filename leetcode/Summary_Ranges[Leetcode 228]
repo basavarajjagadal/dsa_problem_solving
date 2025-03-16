@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<string> summaryRanges(vector<int>& nums) {
+        vector<string> result;     //to store answers
+        int n=nums.size();        // determine size of array
+        for(int i=0;i<n;i++){     // run aloop
+            int start=nums[i];    // mark start of range
+            while(i+1<n && nums[i+1]==nums[i]+1){     // if next indices is continous than find move i and break when it not contigious
+                i++;
+            }
+            int end=nums[i];                       // mark end of range
+            if(start==end) result.push_back(to_string(start));        //if start and end are same then it has only one element to push
+            else result.push_back(to_string(start)+"->"+to_string(end));; // when a and b are differ push from start to end after converting into string
+        }
+        return result;         // return result to function
+    }
+};
