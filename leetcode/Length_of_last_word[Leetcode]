@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int last=s.size()-1;
+        while(last>=0 && s[last]==' '){     //to  place index at alphabets,if spaces then it moves forward
+            last--;
+        }
+
+        int count=0;                      // to store count of last word
+        while(last>=0 &&  s[last]!=' '){
+            count++;
+            last--;
+        }
+        return count;
+        
+    }
+};
