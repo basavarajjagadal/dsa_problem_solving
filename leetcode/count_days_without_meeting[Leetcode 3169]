@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        
+        sort(meetings.begin(),meetings.end());
+        int freedays=0;
+        int prevlast=0;
+        for(auto& meeting:meetings){
+            int start=meeting[0];
+            int end=meeting[1];
+            if(start>prevlast+1){
+                freedays=freedays+(start-prevlast-1);
+            }
+            prevlast=max(prevlast,end);
+        }
+        if(prevlast<days){
+            freedays=freedays+days-prevlast;
+        }
+        return freedays;
+    }
+};
