@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minOperations(vector<vector<int>>& grid, int x) {
+        vector<int> nums;
+        for(auto& row:grid){
+            for(auto num:row){
+                nums.push_back(num);
+            }
+        }
+        int reminder=nums[0]%x;
+        for(auto num:nums){
+            if(num%x!=reminder) return -1;
+        }
+        sort(nums.begin(),nums.end());
+        int mid=nums[nums.size()/2];
+        int count=0;
+        for(auto num:nums){
+            count=count+abs(num-mid)/x;
+        }
+        return count;
+    }
+};
