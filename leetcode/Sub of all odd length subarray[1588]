@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) {
+        int n=arr.size();
+        int totalsum=0;
+        for(int i=0;i<n;i++){
+            int contribution=((i+1)*(n-i)+1)/2;
+            totalsum=totalsum+arr[i]*contribution;
+        }
+        return totalsum;
+
+        //Brurte force
+        // int totalsum=0;
+        // for(int i=0;i<n;i++){
+        //     int sum=0;
+        //     for(int j=i;j<n;j++){
+        //         sum=sum+arr[j];
+        //         if((j-i+1)%2==1) totalsum=totalsum+sum;
+        //     }
+        // }
+        // return totalsum;
+        
+    }
+};
