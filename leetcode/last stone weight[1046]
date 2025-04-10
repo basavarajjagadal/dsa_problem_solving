@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        priority_queue<int> maxheap(stones.begin(),stones.end());
+        while(maxheap.size()>1){
+            int top=maxheap.top();
+            maxheap.pop();
+            int secondtop=maxheap.top();
+            maxheap.pop();
+
+            if(top!=secondtop){
+                maxheap.push(top-secondtop);
+            }
+        }
+        return maxheap.empty()?0:maxheap.top();
+    }
+};
