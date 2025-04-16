@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        map<int,int> mpp;
+        for(auto num:arr1){
+            mpp[num]++;
+        }
+        vector<int> ans;
+        for(auto num:arr2){
+            while(mpp[num]>0){
+                ans.push_back(num);
+                mpp[num]--;
+            }
+        }
+        vector<int> remainingelement;
+        for(auto &[num,freq]:mpp){
+            while(freq--){
+                remainingelement.push_back(num);
+            }
+        }
+        sort(remainingelement.begin(),remainingelement.end());
+        ans.insert(ans.end(), remainingelement.begin(), remainingelement.end());
+        return ans;
+    }
+};
