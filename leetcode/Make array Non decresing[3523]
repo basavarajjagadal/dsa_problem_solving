@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maximumPossibleSize(vector<int>& nums) {
+       vector<int> result;
+        int i = 0;
+        int n = nums.size();
+
+        while (i < n) {
+            int max_val = nums[i];
+            int j = i + 1;
+
+            
+            while (j < n && nums[j] < max_val) {
+                max_val = max(max_val, nums[j]);
+                ++j;
+            }
+
+            result.push_back(max_val);  
+            i = j;  
+        }
+
+        return result.size();
+        
+    }
+};
