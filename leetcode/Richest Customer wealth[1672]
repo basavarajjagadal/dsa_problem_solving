@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
+        int n=accounts.size();
+        int maxwealth=INT_MIN;
+        for(int i=0;i<n;i++){
+            int cuswealth=0;
+            for(int j=0;j<accounts[i].size();j++){
+                cuswealth=cuswealth+accounts[i][j];
+            }
+            maxwealth=max(maxwealth,cuswealth);
+        }
+        return maxwealth;
+    }
+};
