@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int addDigits(int num) {
+        int sum=0;
+        while(num!=0){
+            int digit=num%10;
+            sum=sum+digit;
+            num=num/10;
+        }
+        if(sum<9){
+            return sum;
+        }
+        else{
+            int s;
+            while(sum>9){
+                s=0;
+                while(sum!=0){
+                    int digit=sum%10;
+                    s=s+digit;
+                    sum=sum/10;
+                }
+                sum=s;
+            }
+            return sum;
+        } 
+    }
+};
