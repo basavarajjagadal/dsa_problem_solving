@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isvowel(char ch){
+        return ch=='a' || ch=='e' || ch=='i' ||ch=='o' ||ch=='u';
+    }
+    int maxFreqSum(string s) {
+        map<int,int> mpp;
+        for(auto c:s){
+            mpp[c]++;
+        }
+        int vowel=0;
+        int consonant=0;
+        for(auto &[key,value]:mpp){
+            if(isvowel(key)){
+                vowel=max(vowel,value);
+            }
+            else{
+                consonant=max(consonant,value);
+            }
+        }
+        return vowel+consonant;   
+    }
+};
