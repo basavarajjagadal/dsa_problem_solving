@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    bool isPalinArray(vector<int> &arr) {
+        for(auto num :arr){
+            int n=num;
+            int resersenum=0;
+            while(num!=0){
+                int digit=num%10;
+                resersenum=resersenum*10+digit;
+                num=num/10;
+ 
+            }
+            if(resersenum!=n) return false;
+        }
+        return true;
+    }
+};
