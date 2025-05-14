@@ -1,0 +1,29 @@
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        long long sum=0;
+        long long maxi=0;
+        int left=0;
+        int right=0;
+        int n=nums.size();
+        unordered_set<int> st;
+        while(right<n){
+            while(st.count(nums[right])){
+                sum=sum-nums[left]; 
+                st.erase(nums[left]);
+                left++;
+            }
+            sum=sum+nums[right];
+            st.insert(nums[right]);
+            if((right-left+1)==k){
+                maxi=max(maxi,sum);
+                sum=sum-nums[left];     
+                st.erase(nums[left]);
+                left++;
+            }
+            right++;
+        }
+        return maxi;
+        
+    }
+};
