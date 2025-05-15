@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> getSubarrayBeauty(vector<int>& nums, int k, int x) {
+
+        map<int,int> mp;
+        int left=0;int right=0;
+        vector<int> ans;
+        while(right<nums.size()){
+            mp[nums[right]]++;
+            if((right-left+1)>k){
+                mp[nums[left]]--;
+                left++;
+            }
+            if((right-left+1)==k){
+                int count=0;
+                for(auto idx:mp){
+                    count=count+idx.second;
+                    if(count>=x){
+                        if(idx.first<0) ans.push_back(idx.first);
+                        else ans.push_back(0);
+                        break;
+                    }
+                }
+            }
+            right++;
+        }
+        return ans;
+    }
+};
