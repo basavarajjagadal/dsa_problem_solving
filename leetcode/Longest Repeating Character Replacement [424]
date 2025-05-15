@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int maxi=0;
+        int maxifrequency=0;
+        int left=0;
+        int right=0;
+        int hash[26]={0};
+        int n=s.size();
+        while(right<n){
+            hash[s[right]-'A']++;
+            maxifrequency=max(maxifrequency,hash[s[right]-'A']);
+            int length=right-left+1;
+            if(length-maxifrequency>k){
+                hash[s[left]-'A']--;
+                maxifrequency=0;
+                left++;
+            }
+            if((right-left+1)-maxifrequency<=k){
+                maxi=max(maxi,right-left+1);
+            }
+            
+            right++;
+        }
+        return maxi;
+        
+    }
+};
