@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+
+        int left=0;
+        int right=0;
+        int n=customers.size();
+        int windowsize=0;
+        int sum=0;
+        int maxi=0;
+        while(right<n){
+            if(grumpy[right]){
+                windowsize=windowsize+customers[right];
+            }
+            else{
+                sum=sum+customers[right];
+            }
+            if(right-left+1>minutes){
+                if(grumpy[left]){
+                    windowsize=windowsize-customers[left];
+                }
+                left++;
+            }
+            maxi=max(maxi,windowsize);
+            right++;
+        }
+        return sum+maxi;
+        
+    }
+};
