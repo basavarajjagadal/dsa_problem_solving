@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        
+        int hash[101]={0};
+        for(auto num:nums){
+            hash[num]++;
+        }
+        int sum=0;
+        for(auto num:nums){
+            if(hash[num]==1){
+                sum=sum+num;
+            }
+        }
+        return sum;
+    }
+};
