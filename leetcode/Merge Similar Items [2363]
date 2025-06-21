@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> mergeSimilarItems(vector<vector<int>>& items1, vector<vector<int>>& items2) {
+
+        unordered_map<int,int> mpp;
+        for (auto &item : items1){
+            int value = item[0];
+            int weight = item[1];
+            mpp[value] += weight;
+        }
+
+        for (auto &item : items2){
+            int value = item[0];
+            int weight = item[1];
+            if(mpp.find(value)!=mpp.end()){
+                mpp[value] += weight;
+            } else {
+                mpp[value]=weight;
+            }
+        }
+        vector<vector<int>> ans;
+        for(auto &[value,weight]:mpp){
+            ans.push_back({value,weight});
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+        
+    }
+};
