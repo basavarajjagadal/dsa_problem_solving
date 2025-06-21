@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int minNumber(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> hash(10,0);
+        for(auto num:nums1){
+            hash[num]++;
+        }
+        for(auto num:nums2){
+            hash[num]++;
+        }
+        for(int i=1;i<=9;i++){
+            if(hash[i]>1){
+                return i;
+            }
+        }
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        if(nums1[0]>nums2[0]){
+            return (nums2[0]*10)+nums1[0];
+        }
+        else{
+            return (nums1[0]*10)+nums2[0];
+        }
+        
+    }
+};
