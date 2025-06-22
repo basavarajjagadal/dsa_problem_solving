@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        unordered_map<char,int> mpp;
+        for(auto &word : words){
+            for(auto &ch:word){
+                mpp[ch]++;
+            }
+        }
+        int n=words.size();
+        if(n==1) return true;
+        for(auto &[key,value]:mpp){
+            if(value%n!=0) return false;
+        }
+        return true;
+        
+    }
+};
