@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k) {
+
+        using T = pair<float, pair<int, int>>;
+        priority_queue<T> maxheap;
+
+        int n = arr.size();
+        for(int i = 0; i < n; i++) {
+            for(int j = i + 1; j < n; j++) {
+                float frac = (float)arr[i] / arr[j];
+                maxheap.push({frac, {arr[i], arr[j]}});
+                if (maxheap.size() > k) {
+                    maxheap.pop(); 
+                }
+            }
+        }
+        return {maxheap.top().second.first, maxheap.top().second.second};
+    }
+};
