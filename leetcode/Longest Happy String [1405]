@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string longestDiverseString(int a, int b, int c) {
+        priority_queue<pair<int ,char>> maxheap;
+        if(a>0) maxheap.push({a,'a'});
+        if(b>0) maxheap.push({b,'b'});
+        if(c>0) maxheap.push({c,'c'});
+
+        string ans="";
+        while(!maxheap.empty()){
+
+            int firstvalue=maxheap.top().first;
+            char firstchar=maxheap.top().second;
+            maxheap.pop();
+            int n=ans.size();
+            if(n>=2 && ans[n-1]==firstchar && ans[n-2]==firstchar){
+                if(maxheap.empty()){
+                    break;
+                }
+
+                int secondvalue=maxheap.top().first;
+                char secondchar=maxheap.top().second;
+                maxheap.pop();
+                ans.push_back(secondchar);
+                secondvalue--;
+                if(secondvalue>0){
+                maxheap.push({secondvalue,secondchar});
+                }
+            }
+            else{
+                ans.push_back(firstchar);
+                firstvalue--;
+            }
+            if(firstvalue>0){
+                maxheap.push({firstvalue,firstchar});
+            }
+        }
+        return ans;   
+    }
+};
