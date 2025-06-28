@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int smallestChair(vector<vector<int>>& times, int targetFriend) {
+
+        vector<tuple<int, int, int>> elements;
+        int n = times.size();
+
+        for (int i = 0; i < n; i++) {
+            elements.push_back({times[i][0], 1, i}); // arrival marked as 1
+            elements.push_back({times[i][1], 0, i}); // departure marked as 0
+        }
+
+        sort(elements.begin(), elements.end());
+
+        priority_queue<int, vector<int>, greater<int>> minheap;
+        unordered_map<int, int> mpp;
+        int chair = 0;
+
+        for (auto [time, mode, friendindex] : elements) {
+            if (mode == 0) {
+                // departure
+                minheap.push(mpp[friendindex]);
+            } else {
+                // arrival
+                int t;
+                if (!minheap.empty()) {
+                    t = minheap.top();
+                    minheap.pop();
+                } else {
+                    t = chair++;
+                }
+                mpp[friendindex] = t;
+                if (friendindex == targetFriend) return t;
+            }
+        }
+
+        return -1; 
+       
+    }
+};
