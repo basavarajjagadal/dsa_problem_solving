@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int minSetSize(vector<int>& arr) {
+
+        unordered_map<int,int> mpp;
+        for(auto n:arr){
+            mpp[n]++;
+        }
+
+        priority_queue<pair<int,int>> maxheap;
+        for(auto &[key,value]:mpp){
+            maxheap.push({value,key});
+        }
+
+        int n=arr.size();
+        int half=n/2;
+        int operation=0;
+        int sum=0;
+        while(sum<half){
+            int value=maxheap.top().first;
+            maxheap.pop();
+            sum=sum+value;
+            operation++;
+        }
+        return operation;
+        
+    }
+};
