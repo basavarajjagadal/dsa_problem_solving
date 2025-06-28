@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+         unordered_map<char, int> freq;
+
+        // Step 1: Count frequency of each character
+        for (char c : s) {
+            freq[c]++;
+        }
+
+        // Step 2: Max-heap based on frequency
+        priority_queue<pair<int, char>> maxHeap;
+        for (auto& entry : freq) {
+            maxHeap.push({entry.second, entry.first});
+        }
+
+        // Step 3: Build result string
+        string result = "";
+        while (!maxHeap.empty()) {
+            auto [count, ch] = maxHeap.top();
+            maxHeap.pop();
+            result += string(count, ch);  // Append character 'count' times
+        }
+
+        return result;
+        
+    }
+};
