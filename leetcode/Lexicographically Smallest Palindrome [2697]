@@ -1,0 +1,29 @@
+class Solution {
+public:
+
+    char smallestchar(char a,char b){
+        if(a<b){
+            return a;
+        }
+        return b;
+    }
+
+    string makeSmallestPalindrome(string s) {
+
+        int l=0;
+        int r=s.size()-1;
+        while(l<r){
+            if(s[l]==s[r]){
+                l++;
+                r--;
+            }
+            else{
+                char ch=smallestchar(s[l],s[r]);
+                s[l]=ch;
+                s[r]=ch;
+            }
+        }
+        return s;
+        
+    }
+};
