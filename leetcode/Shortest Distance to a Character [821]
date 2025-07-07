@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<int> shortestToChar(string s, char c) {
+        int n=s.size();
+        vector<int> left(n,INT_MAX);
+        vector<int> right(n,INT_MAX);
+
+        int x=INT_MAX;
+        for(int i=0;i<n;i++){
+            if(s[i]==c){
+                x=0;
+                right[i]=x;
+            }
+            else{
+                if(x!=INT_MAX){
+                    x++;
+                    right[i]=x;
+                }
+            }
+        }
+
+        x=INT_MAX;
+        for(int i=n-1;i>=0;i--){
+            if(s[i]==c){
+                x=0;
+                left[i]=x;
+            }
+            else{
+                if(x!=INT_MAX){
+                    x++;
+                    left[i]=x;
+                }
+            }
+        }
+        vector<int> ans;
+        for(int i=0;i<n;i++){
+            int mini=min(left[i],right[i]);
+            ans.push_back(mini);
+        }
+        return ans;
+    }
+};
