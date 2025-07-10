@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+
+        int prevgreater=nums[0];
+        int operation=0;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]<=prevgreater ){
+                operation=operation+(prevgreater-nums[i]+1);
+                prevgreater=prevgreater+1;
+            }
+            else{
+                prevgreater=nums[i];
+            }    
+        }
+        return operation;
+        
+    }
+};
