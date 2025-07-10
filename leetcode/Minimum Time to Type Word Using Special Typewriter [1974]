@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minTimeToType(string word) {
+
+        int time=0;
+        int current='a';
+        for(auto ch:word){
+            int diff=abs(ch-current);
+            int backdiff=26-diff;
+            time=time+min(diff,backdiff);
+            time=time+1;
+            current=ch;
+        }
+        return time;
+    }
+};
