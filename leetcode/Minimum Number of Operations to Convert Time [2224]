@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int convertTime(string current, string correct) {
+
+        string currhour=current.substr(0,2);
+        string currmin=current.substr(3,2);
+        int total_currentmin=stoi(currhour)*60+stoi(currmin);
+
+        string correcthour=correct.substr(0,2);
+        string correctmin=correct.substr(3,2);
+        int total_correctmin=stoi(correcthour)*60+stoi(correctmin);
+
+        int diff=total_correctmin-total_currentmin;
+
+        int operations=0;
+        while(diff){
+            if(diff>=60) diff=diff-60;
+            else if(diff>=15) diff=diff-15;
+            else if(diff>=5) diff=diff-5;
+            else diff=diff-1;
+
+            operations++;
+        }
+        return operations;
+
+        
+        
+    }
+};
