@@ -1,0 +1,26 @@
+class Solution {
+public:
+
+    int trythis(vector<vector<int>>& grid,int coly,int colm){
+        int m=grid.size();
+        int n=grid[0].size();
+        int notmatch=0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if((i<=n/2 && i==j )|| (i<=n/2 && i+j==n-1 ) || (i>n/2 && j==n/2)){
+                    if(grid[i][j]!=coly) notmatch++;
+                }
+                else{
+                    if(grid[i][j]!=colm) notmatch++;
+                }
+            }
+        }
+        return notmatch;
+    }
+    int minimumOperationsToWriteY(vector<vector<int>>& grid) {
+
+        int ans=min({trythis(grid,1,0),trythis(grid,1,2),trythis(grid,0,1),trythis(grid,0,2),trythis(grid,2,0),trythis(grid,2,1)});
+        return ans;
+        
+    }
+};
