@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isPossibleDivide(vector<int>& nums, int k) {
+
+        int n=nums.size();
+        if(n%k!=0) return false;
+        map<int,int> mpp;
+        for(auto num:nums){
+            mpp[num]++;
+        }
+
+        while(!mpp.empty()){
+
+            int number=mpp.begin()->first;
+            for(int i=0;i<k;i++){
+                if(mpp.find(number+i)==mpp.end()) return false;
+                mpp[number+i]--;
+                if (mpp[number + i] == 0) {
+                    mpp.erase(number + i);
+                }
+            }
+        }
+        return true;
+        
+    }
+};
