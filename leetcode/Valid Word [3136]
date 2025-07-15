@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isvowel(char ch) {
+        ch = tolower(ch);
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+
+    bool isValid(string word) {
+        int n = word.size();
+        if (n < 3)
+            return false;
+        int vowel = 0;
+        int consonant = 0;
+        for (int i = 0; i < n; i++) {
+            if (!isalnum(word[i]))
+                return false;
+            if (isalpha(word[i])) {
+                if (isvowel(word[i])) vowel++;
+                else consonant++;
+            }
+        }
+        if (vowel && consonant)
+            return true;
+        return false;
+    }
+};
