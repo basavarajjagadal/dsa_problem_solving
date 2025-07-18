@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+
+        unordered_map<int,int> mpp;
+        for(auto &num:nums){
+            mpp[num]++;
+        }
+        int rounds=0;
+        for(auto &[key,value]:mpp){
+
+            if(value==1) return -1;
+            rounds += (value + 2) / 3;
+        }
+        return rounds;
+        
+    }
+};
