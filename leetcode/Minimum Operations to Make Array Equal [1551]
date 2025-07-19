@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minOperations(int n) {
+
+        int first=1;
+        int last=2*(n-1)+1;
+        int target=(first+last)/2;
+        int operation=0;
+        for(int i=1;i<=target;i=i+2){
+            operation=operation+target-i;
+        }
+        return operation;
+    }
+};
