@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int largestRectangleArea(vector<int> heights) {
+
+        stack<int> st;
+        int n=heights.size();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            while(!st.empty() && heights[st.top()]>heights[i]){
+                int nse=i;
+                int index=st.top();
+                st.pop();
+                int pse=st.empty()?-1:st.top();
+                int width=nse-pse-1;
+                sum=max(sum,heights[index]*width);
+            }
+            st.push(i);
+        }
+        while(!st.empty()){
+            int nse=n;
+            int index=st.top();
+            st.pop();
+            int pse=st.empty()?-1:st.top();
+            int width=nse-pse-1;
+            sum=max(sum,heights[index]*width);
+        }
+        return sum;     
+    }
+
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int n=matrix.size();
+        int m=matrix[0].size();
+        vector<vector<int>> prematrix(n, vector<int>(m, 0));
+        for(int j=0;j<m;j++){
+            int sum=0;
+            for(int i=0;i<n;i++){
+                sum++;
+                if(matrix[i][j]=='0'){
+                    sum=0;
+                }
+                prematrix[i][j]=sum;
+            }
+        }
+
+        int largestrec=0;
+        for(int i=0;i<n;i++){
+            largestrec=max(largestrec,largestRectangleArea(prematrix[i]));
+        }
+        return largestrec;
+
+
+        
+    }
+};
