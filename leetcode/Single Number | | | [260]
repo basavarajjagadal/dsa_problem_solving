@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+
+        int xor_of_all=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            xor_of_all=xor_of_all^nums[i];
+        }
+
+        unsigned int mask = (unsigned int)xor_of_all & (-(unsigned int)xor_of_all);
+
+        int group_a=0;
+        int group_b=0;
+        for(auto num:nums){
+            if(num&mask){
+                group_a=group_a^num;
+            }
+            else{
+                group_b=group_b^num;
+            }
+        }
+
+        return {group_a,group_b};
+        
+    }
+};
