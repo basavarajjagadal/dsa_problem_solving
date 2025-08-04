@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int matrixScore(vector<vector<int>>& grid) {
+
+        int score=0;
+        int m=grid.size();  //row size
+        int n=grid[0].size();   //col size
+        
+        score=pow(2,n-1)*m;
+
+        for(int j=1;j<n;j++){
+
+            int countsamebits=0;
+            for(int i=0;i<m;i++){
+                if(grid[i][j]==grid[i][0]){
+                    countsamebits++;
+                }
+            }
+            int countones=countsamebits;
+            int countzeros=m-countones;
+            int ones=max(countones,countzeros);
+            score=score+(1 << (n - j - 1))*ones;
+
+        }
+        return score;
+
+
+        
+    }
+};
