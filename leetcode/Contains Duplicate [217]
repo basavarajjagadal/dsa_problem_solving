@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        //optimised solution using map ds whose TC is O(N)
+        // TC-Nlogn
+        unordered_set<int> mpp;
+        for(int i=0;i<nums.size();i++){
+            if (mpp.count(nums[i])) return true;  // Duplicate found
+            mpp.insert(nums[i]);
+        }
+        return false;
+        // sort(nums.begin(),nums.end());
+        // for(int i=0;i<nums.size()-1;i++){
+        //     if(nums[i]==nums[i+1]) return true;
+        // }
+        // return false;
+    }
+};
