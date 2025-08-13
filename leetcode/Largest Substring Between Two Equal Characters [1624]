@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxLengthBetweenEqualCharacters(string s) {
+        unordered_map<char,int> mpp;
+        int maxi=-1;
+        for(int i=0;i<s.size();i++){
+            if(mpp.find(s[i])!=mpp.end()){
+                maxi=max(i-mpp[s[i]]-1,maxi);
+            }
+            else{
+                mpp[s[i]]=i;
+            }
+        }
+        return maxi;
+        
+    }
+};
