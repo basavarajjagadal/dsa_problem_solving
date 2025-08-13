@@ -1,0 +1,32 @@
+class Solution {
+public:
+
+    string fun(string s,unordered_set<string> &st){
+        int len=s.size();
+        for(int i=1;i<=len;i++){
+            string word=s.substr(0,i);
+            if(st.find(word)!=st.end()){
+                return word;
+            }
+        }
+        return s;
+    }
+
+    string replaceWords(vector<string>& dictionary, string sentence) {
+
+        unordered_set<string> st;
+        for(auto &s:dictionary){
+            st.insert(s);
+        }
+
+        stringstream ss(sentence);
+        string token;
+        string ans="";
+        while(getline(ss,token,' ')){
+            ans=ans+fun(token,st)+" ";
+        }
+        ans.pop_back();
+        return ans;
+        
+    }
+};
