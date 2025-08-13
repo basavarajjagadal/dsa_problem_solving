@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        set<int> st;
+        for(auto candy:candyType){
+            st.insert(candy);
+        }
+        int count=0;
+        int n=candyType.size()/2;
+        for(auto x:st){
+            count++;
+            if(count==n)  break;
+        }
+        return count;
+    }
+};
