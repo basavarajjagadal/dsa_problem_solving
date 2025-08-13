@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool equalFrequency(string word) {
+        vector<int> hash(26,0);
+        for(auto ch:word){
+            hash[ch-'a']++;
+        }
+        for(int i=0;i<26;i++){
+            if(hash[i]){
+                hash[i]--;
+                int maxi=*max_element(hash.begin(),hash.end());
+                bool status=true;
+                for(int j=0;j<26;j++){
+                    if(hash[j] && hash[j]!=maxi){
+                        status=false;
+                    }
+                }
+                if(status==true) return true;
+                hash[i]++;
+            }
+        }
+        return false;
+        
+    }
+};
