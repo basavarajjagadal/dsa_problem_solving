@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numRabbits(vector<int>& answers) {
+        
+        unordered_map<int,int> mp;
+        for(auto &num:answers){
+            mp[num]++;
+        }
+        int totalrabbits=0;
+
+        for(auto &it:mp){
+            int x=it.first;
+            int value=it.second;
+
+            int groupsize=x+1;
+            int group=ceil((double)value/groupsize);
+            totalrabbits=totalrabbits+(group*groupsize);
+        }
+        return totalrabbits;
+    }
+};
