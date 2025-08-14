@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int, int> mpp; // Stores {num, last index}
+        for (int i = 0; i < nums.size(); i++) {
+            if (mpp.find(nums[i]) != mpp.end()) { // Check if number exists
+                if (i - mpp[nums[i]] <= k) { // Check if the difference is within k
+                    return true;
+                }
+            }
+            mpp[nums[i]] = i; // Update the last index of nums[i]
+        }
+        return false;
+    }
+};
