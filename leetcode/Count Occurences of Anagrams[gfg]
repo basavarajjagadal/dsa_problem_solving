@@ -1,0 +1,45 @@
+// User function template for C++
+class Solution {
+  public:
+  
+    bool check(vector<int> &hash){
+        
+        for(int i=0;i<26;i++){
+            if(hash[i]!=0){
+                return false;
+            }
+        }
+        return true;
+        
+    }
+    
+    int search(string &pat, string &txt) {
+        
+        vector<int> hash(26,0);
+        int pn=pat.size();
+        
+        for(auto &ch:pat){
+            hash[ch-'a']++;
+        }
+        
+        int l=0;
+        int r=0;
+        int count=0;
+        int t_size=txt.size();
+        while(r<t_size){
+            
+            char ch=txt[r];
+            hash[ch-'a']--;
+            if(r-l+1==pn){
+                if(check(hash)){
+                    count++;
+                }
+                hash[txt[l]-'a']++;
+                l++;
+            }
+            r++;
+        }
+        return count;
+        
+    }
+};
