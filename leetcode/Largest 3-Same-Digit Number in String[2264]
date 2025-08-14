@@ -1,0 +1,49 @@
+class Solution {
+public:
+    // bool issamedigit(vector<int> &hash){
+
+    //     for(int i=0;i<=9;i++){
+    //         if(hash[i]==3){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    string largestGoodInteger(string num) {
+
+        int n = num.size();
+        int maxi = -1; 
+
+        for (int i = 0; i <= n - 3; i++) {
+            if (num[i] == num[i+1] && num[i] == num[i+2]) {
+                int digit = num[i] - '0';
+                maxi = max(maxi, digit);
+            }
+        }
+
+        if (maxi == -1) return "";
+        return string(3, maxi + '0');
+
+        // vector<int> hash(10,0);
+        // int left=0;
+        // int right=0;
+        // int n=num.size();
+        // int maxi=-1;
+        // while(right<n){
+        //     hash[num[right]-'0']++;
+        //     if(right-left+1==3){
+        //         if(issamedigit(hash)){
+        //             int digit=num[right]-'0';
+        //             maxi=max(maxi,digit);
+        //         }
+        //         hash[num[left]-'0']--;
+        //         left++;
+        //     }
+        //     right++;
+        // }
+        // if(maxi==-1) return "";
+        // return string(3, maxi + '0');
+        
+    }
+};
