@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> getAverages(vector<int>& nums, int k) {
+        int n=nums.size();
+        vector<int> result(n,-1);
+        if(k==0) return nums;
+        if(n<k) return result;
+        int left=0;
+        int right=0;
+        long long sum=0;
+        while(right<n){
+            sum=sum+nums[right];
+            if((right-left+1)==2*k+1){
+                int avg=sum/(2*k+1);
+                result[right-k]=avg;
+                sum=sum-nums[left];
+                left++;
+            }
+            right++;
+        }
+        return result;
+        
+    }
+};
