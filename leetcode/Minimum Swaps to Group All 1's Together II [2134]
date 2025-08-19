@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int minSwaps(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> arr(2*n);
+
+        for(int i=0;i<2*n;i++){
+            arr[i]=nums[i%n];
+        }
+        int l=0;
+        int r=0;
+        int countones=accumulate(nums.begin(),nums.end(),0);
+        int minswaps=2*n;
+        int windowones=0;
+        while(r<2*n){
+            if(arr[r]==1){
+                windowones++;
+            }
+            if(r-l+1>countones){
+                
+                windowones=windowones-arr[l];
+                l++;
+            }
+            minswaps=min(minswaps,countones-windowones);
+            r++;
+        }
+        return minswaps;
+        
+
+        
+    }
+};
