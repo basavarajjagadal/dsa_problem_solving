@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+
+        vector<int> hash(256,0);
+        for(auto ch:s){
+            hash[ch]++;
+        }
+
+        int count=0;
+        bool oddfound = false;
+
+        for (int i = 0; i < 256; i++) {
+            if (hash[i] % 2 == 0) {
+                count += hash[i];  
+            } else {
+                count += hash[i]-1; 
+                oddfound = true;      
+            }
+        }
+
+        if (oddfound) count++; 
+        return count; 
+    }
+};
