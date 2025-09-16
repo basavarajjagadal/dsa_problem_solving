@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> replaceNonCoprimes(vector<int>& nums) {
+        vector<int> result;
+        for(auto num:nums){
+            while(!result.empty()){
+                int prev=result.back();
+                int current=num;
+                int GCD=gcd(prev,current);
+                if(GCD==1){
+                    break;
+                }
+                int lcm=1ll*prev*current/GCD;
+                result.pop_back();
+                num=lcm;
+            }
+            result.push_back(num);
+        }
+        return result;
+        
+    }
+};
