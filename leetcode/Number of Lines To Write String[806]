@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> numberOfLines(vector<int>& widths, string s) {
+
+        int lines=0;
+        int maxpx=100;
+        for(auto ch:s){
+
+            int value=widths[ch-'a'];
+            if(value<=maxpx){
+                maxpx=maxpx-value;
+            }
+            else{
+                lines++;
+                maxpx=100-value;
+            }
+        }
+        return {lines+1,100-maxpx};
+        
+    }
+};
