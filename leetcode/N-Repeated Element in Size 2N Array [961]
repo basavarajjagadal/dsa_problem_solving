@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& nums) {
+
+        int n=nums.size()/2;
+        unordered_map<int,int> mp;
+        for(auto num:nums){
+            mp[num]++;
+        }
+
+        for(auto &[key,value]:mp){
+            if(value==n){
+                return key;
+            }
+        }
+        return -1;
+    }
+};
+
+// approach-2--------> using set
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& nums) {
+        unordered_set<int> st;
+        for(int num : nums) {
+            if(st.find(num) != st.end()) {
+                return num;
+            }
+            st.insert(num);
+        }
+        return -1;
+    }
+};
