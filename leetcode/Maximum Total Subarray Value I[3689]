@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int findmax(vector<int>& nums){
+        int maxi=*max_element(nums.begin(),nums.end());
+        return maxi;
+    }
+    int findmin(vector<int>& nums){
+        int mini=*min_element(nums.begin(),nums.end());
+        return mini;
+    }
+    long long maxTotalValue(vector<int>& nums, int k) {
+
+        long long sum=0;
+        int max=findmax(nums);
+        int min=findmin(nums);
+        while(k){
+            
+            sum=sum+max-min;
+            k--;
+        }
+        return sum;
+        
+    }
+};
