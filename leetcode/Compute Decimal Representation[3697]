@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> decimalRepresentation(int n) {
+
+
+        vector<int> components;
+        long long factor = 1; 
+
+        while (n > 0) {
+            int digit = n % 10;
+            if (digit != 0) {
+                components.push_back(digit * factor);
+            }
+            n /= 10;
+            factor *= 10;
+        }
+
+        reverse(components.begin(), components.end());
+        return components;
+        
+        
+    }
+};
