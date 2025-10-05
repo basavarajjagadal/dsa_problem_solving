@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int longestSubsequence(vector<int>& nums) {
+
+        bool allzeros=true;
+        int xorr=0;
+        int n=nums.size();
+        for(auto &num:nums){
+            xorr=xorr^num;
+            if(num!=0) allzeros=false;
+        }
+        if(allzeros) return 0;
+        if(xorr!=0) return n; 
+        return n-1;
+
+        
+    }
+};
