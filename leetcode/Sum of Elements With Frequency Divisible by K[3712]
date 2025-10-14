@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int sumDivisibleByK(vector<int>& nums, int k) {
+
+        unordered_map<int,int> mp;
+        for(auto num:nums){
+            mp[num]++;
+        }
+        int sum=0;
+        for(auto &[key,value]:mp){
+            if(value%k==0){
+                sum=sum+(key*value);
+            }
+        }
+        return sum;
+
+        
+    }
+};
