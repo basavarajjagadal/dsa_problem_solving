@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> zigzagTraversal(vector<vector<int>>& grid) {
+        vector<int> left;
+        
+        int row=grid.size();
+        int col=grid[0].size();
+        bool leftToRight=true;
+        for(int i=0;i<row;i++){
+            vector<int> right;
+            for(int j=0;j<col;j++){
+                if((i+j)%2==0 && leftToRight==true){
+                    left.push_back(grid[i][j]);
+                    
+                }
+                else if((i+j)%2==0){
+                    right.push_back(grid[i][j]);
+                    
+                }
+            }
+            leftToRight=!leftToRight;
+            reverse(right.begin(),right.end());
+            left.insert(left.end(), right.begin(), right.end());
+        }
+        return left;
+        
+    }
+};
