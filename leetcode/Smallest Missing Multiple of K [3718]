@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+        int i;
+        for(i=k;i<=100;i=i+k){
+            bool found=false;
+            for(auto num:nums){
+                if(num==i){
+                    found=true;
+                    continue;
+                }
+            }
+            if(found==false) return i;
+        }
+        return i;
+        
+    }
+};
