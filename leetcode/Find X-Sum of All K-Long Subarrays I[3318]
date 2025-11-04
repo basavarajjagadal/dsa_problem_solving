@@ -1,0 +1,43 @@
+class Solution {
+public:
+    typedef pair<int,int> P; 
+    int findsumofx(unordered_map<int,int> mp,int x){
+        priority_queue<P,vector<P>,greater<P>> pq;
+        for(auto &it:mp){
+            pq.push({it.second,it.first});
+            if(pq.size()>x){
+                pq.pop();
+            }
+        }
+        int sum=0;
+        while(!pq.empty()){
+            auto [freq,element]=pq.top();
+            pq.pop();
+            sum=sum+freq*element;
+        }
+        return sum;
+    }
+    vector<int> findXSum(vector<int>& nums, int k, int x) {
+        vector<int> ans;
+        unordered_map<int,int> mp;
+        int  i=0;
+        int j=0;
+        int n=nums.size();
+        while(j<n){
+            mp[nums[j]]++;
+            if(j-i+1==k){
+
+                int sum=findsumofx(mp,x);
+                ans.push_back(sum);
+                mp[nums[i]]--;
+                if(mp[nums[i]]==0){
+                    mp.erase(nums[i]);
+                }
+                i++;
+            }
+            j++;
+        }
+        return ans;
+        
+    }
+};
