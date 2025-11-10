@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int minimumDistance(vector<int>& nums) {
+        int n=nums.size();
+        if(n<3) return -1;
+        vector<pair<int,int>> v;
+        for(int i=0;i<n;i++){
+            v.push_back({nums[i],i});
+        }
+        
+        sort(v.begin(),v.end());
+        int minidistance=INT_MAX;
+        for(int i=0;i<n-2;i++){
+            int first=v[i].first;
+            int second=v[i+1].first;
+            int third=v[i+2].first;
+            if(first==second && second==third){
+                minidistance=min(minidistance,abs(v[i].second-v[i+1].second)+abs(v[i+1].second-v[i+2].second)+abs(v[i+2].second-v[i].second));
+            }
+        }
+        return minidistance==INT_MAX?-1:minidistance;
+    }
+};
