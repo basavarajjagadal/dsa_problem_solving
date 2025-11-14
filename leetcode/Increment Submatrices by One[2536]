@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<vector<int>> rangeAddQueries(int n, vector<vector<int>>& queries) {
+
+        vector<vector<int>> v(n, vector<int>(n));
+        for(auto &x:queries){
+            int rowstart=x[0];
+            int rowend=x[2];
+            int colstart=x[1];
+            int colend=x[3];
+            for(int i=rowstart;i<=rowend;i++){
+                for(int j=colstart;j<=colend;j++){
+                    v[i][j]+=1;
+                }
+            }
+        }
+        return v;
+        
+    }
+};
