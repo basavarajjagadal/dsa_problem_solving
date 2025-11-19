@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findFinalValue(vector<int>& nums, int original) {
+
+        unordered_set<int> st;
+        for(auto num:nums){
+            st.insert(num);
+        }
+
+        while(true){
+            if(st.find(original)==st.end()){
+                return original;
+            }
+            else{
+                original=original*2;
+            }
+        }
+        return -1;  
+
+        
+    }
+};
