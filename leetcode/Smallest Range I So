@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int smallestRangeI(vector<int>& nums, int k) {
+        
+        int mini=INT_MAX;
+        int maxi=INT_MIN;
+        for(auto num:nums){
+            mini=min(mini,num);
+            maxi=max(maxi,num);
+        }
+        return max(0,(maxi-k)-(mini+k));
+    }
+};
