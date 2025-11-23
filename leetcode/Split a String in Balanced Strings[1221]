@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int balancedStringSplit(string s) {
+        int count=0;
+        int countL=0;
+        int countR=0;
+        for(auto &ch:s){
+            if(ch=='L') countL++;
+            if(ch=='R') countR++;
+            if(countL==countR) count++;
+        }
+        return count;
+        
+    }
+};
