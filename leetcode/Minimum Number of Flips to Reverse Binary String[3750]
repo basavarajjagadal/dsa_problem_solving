@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minimumFlips(int n) {
+        
+        string s="";
+        while(n!=0){
+            s.push_back('0'+(n%2));
+            n=n/2;
+        }
+        int l=0;
+        int r=s.size()-1;
+        int count=0;
+        while(l<r){
+            if(s[l]!=s[r]){
+                count=count+2;
+            }
+            l++;
+            r--;
+        }
+        return count;
+
+
+        
+    }
+};
