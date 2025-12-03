@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int subsetxor(vector<int> &nums,int index,int sum){
+        if(index==nums.size()){
+            return sum;
+        }
+
+        
+        int take=subsetxor(nums,index+1,sum^nums[index]);
+        int nottake=subsetxor(nums,index+1,sum);
+        return take+nottake;
+    }
+    int subsetXORSum(vector<int>& nums) {
+        int sum=0;
+        int ans=subsetxor(nums,0,sum);
+        return ans;
+        
+        
+    }
+};
